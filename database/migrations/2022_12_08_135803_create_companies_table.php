@@ -10,21 +10,18 @@ return new class extends Migration {
 
     public function up(): void
     {
-        Schema::create('users', static function (Blueprint $table) {
+        Schema::create('companies', static function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->tinyInteger('role_id')->default(1);
-            $table->rememberToken();
+            $table->string('logo')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }
 
-
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('companies');
     }
 };

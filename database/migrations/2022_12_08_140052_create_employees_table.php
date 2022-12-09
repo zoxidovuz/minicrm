@@ -10,21 +10,19 @@ return new class extends Migration {
 
     public function up(): void
     {
-        Schema::create('users', static function (Blueprint $table) {
+        Schema::create('employees', static function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->tinyInteger('role_id')->default(1);
-            $table->rememberToken();
+            $table->string('phone')->nullable();
             $table->timestamps();
         });
     }
 
-
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('employees');
     }
 };
